@@ -111,7 +111,7 @@ mode "resize" {
 #bindsym $mod+r mode "resize"
 
 
-set $bg-color 	         #2f343f
+set $bg-color 	         #0f141f
 set $inactive-bg-color   #2f343f
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
@@ -173,7 +173,7 @@ for_window [title="archey3"] focus
 # default workspaces
 assign [class="Firefox"] $workspace1
 assign [class="URxvt"] $workspace2
-assign [title="^ranger$"] $workspace5
+assign [title="ranger"] $workspace5
 assign [class="Termite"] $workspace2
 assign [class="Gvim"] $workspace3
 assign [instance="libreoffice"] $workspace4
@@ -181,7 +181,7 @@ assign [instance="Steam"] $workspace10
 
 bindsym $mod+f exec firefox
 bindsym $mod+Return exec termite
-bindsym $mod+r exec termite -e ranger --title ranger
+bindsym $mod+r exec urxvt -e ranger 
 
 # focus automatically to applications
 for_window [class="Gvim"] focus
