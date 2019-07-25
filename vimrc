@@ -1,38 +1,112 @@
-set number
-syntax enable
+""""""""""""""""""""""""""""""""""""""""
+" Custom vimrc for Windoze GVIM / Linux VIM
+""""""""""""""""""""""""""""""""""""""""
+"   1. Plugins
+"   2. General
+"   3. VIM UI
+"   4. Themes
+"   5. Text and Indenting
+
+""""""""""""""""""""""""""""""""""""""""
+"   1. Plugins
+""""""""""""""""""""""""""""""""""""""""
+call plug#begin('~/.vim/plugged')
+    Plug 'morhetz/gruvbox'
+    Plug 'vim-airline/vim-airline'
+    Plug 'w0rp/ale'
+call plug#end() 
+
+let g:ale_completion_enabled = 1
+
+" vim-airline
+let g:airline_powerline_fonts = 1
+
+""""""""""""""""""""""""""""""""""""""""
+"   2. General
+""""""""""""""""""""""""""""""""""""""""
+" Set how many lines of history VIM should remember
+set history=2000
+
+" Enable filetype-specific highlighting and indenting
+filetype plugin indent on
+
+" Set mapleader to ,
+let mapleader = ","
+
+" :W sudo saves the file 
+" (useful for handling the permission-denied error)
+command W w !sudo tee % > /dev/null
+
+""""""""""""""""""""""""""""""""""""""""
+"   3. VIM UI
+""""""""""""""""""""""""""""""""""""""""
+" Enable wild menu
+set wildmenu
+
+" Always show current position on right bottom
+set ruler
+
+" Hide instead of close buffers when abandoning them
+" Enables changing buffers without having to save
+set hidden
+
+" Show matching brackets when text indicator is over them
+set showmatch 
+
+" Ignore case when searching
+set ignorecase
+
+" When searching try to be smart about cases 
+set smartcase
+
+" Search for pattern while typing
+set incsearch
+
+" Highlight search results
 set hlsearch
 
+" Set linenumbers
+set number
 
-filetype plugin indent on
+" No annoying sound on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+" Always show the status line
+"set laststatus=2
+
+""""""""""""""""""""""""""""""""""""""""
+"   4. Themes
+""""""""""""""""""""""""""""""""""""""""
+" Enable syntax highlighting
+syntax enable
+
+" Set colorscheme
+colorscheme gruvbox
+
+" Set GVIM font
+set guifont=Source\ Code\ Pro\ for\ Powerline:h10
+
+" Set utf8 as standard encoding 
+set encoding=utf8
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+
+""""""""""""""""""""""""""""""""""""""""
+"   5. Text and Indenting
+""""""""""""""""""""""""""""""""""""""""
 " show existing tab with 4 spaces width
 set tabstop=4
+
 " when indenting with '>', use 4 spaces width
 set shiftwidth=4
+
 " On pressing tab, insert 4 spaces
 set expandtab
 
+" Tab improvements
+set smarttab
 
-set wildmenu
-
-set ruler
-
-"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-if (empty($TMUX))
-  if (has("nvim"))
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-endif
-
-colorscheme onedark
-
-" map ESC to clear last searched register - clears search highlight
-nnoremap <esc> :let @/=""<cr><esc>
