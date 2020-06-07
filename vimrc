@@ -85,9 +85,10 @@ syntax enable
 
 " Set colorscheme
 colorscheme gruvbox
+set background=dark
 
 " Set GVIM font
-set guifont=Source\ Code\ Pro\ for\ Powerline:h10
+set guifont=Inconsolata\ for\ Powerline:h10
 
 " Set utf8 as standard encoding 
 set encoding=utf8
